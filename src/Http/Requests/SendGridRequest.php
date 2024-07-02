@@ -10,9 +10,7 @@ class SendGridRequest extends FormRequest
 {
     public function validator()
     {
-        return Validator::make($this->all(), [
-            'email' => 'required',
-        ]);
+        return Validator::make($this->all(), []);
     }
 
     public function email()

@@ -83,7 +83,7 @@ class Router
 
     public function callMailboxes(InboundEmail $email)
     {
-        if ($email->isValid()) {
+//        if ($email->isValid()) {
             $matchedRoutes = $this->routes->match($email)->map(function (Route $route) use ($email) {
                 $route->run($email);
             });
@@ -101,7 +101,7 @@ class Router
             if ($this->shouldStoreInboundEmails() && $this->shouldStoreAllInboundEmails($matchedRoutes)) {
                 $this->storeEmail($email);
             }
-        }
+//        }
     }
 
     protected function shouldStoreInboundEmails(): bool
