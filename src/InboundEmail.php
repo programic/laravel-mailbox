@@ -34,10 +34,16 @@ class InboundEmail extends Model
         });
     }
 
+    public static function fixEncoding(string $s): string
+    {
+        // removes xD800-xDFFF, x110000 and higher
+        return htmlspecialchars_decode(htmlspecialchars($s, ENT_NOQUOTES | ENT_IGNORE, 'UTF-8'), ENT_NOQUOTES);
+    }
+
     public static function fromMessage($message)
     {
         return new static([
-            'message' => $message,
+            'message' => self::fixEncoding($message),
         ]);
     }
 
